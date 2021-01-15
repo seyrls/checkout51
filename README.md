@@ -1,37 +1,36 @@
-# Symfony 5 docker containers
+# Checkout51 code challenger
 
-A Proof-of-concept of a running Symfony 5 application inside containers
+## Folder structure
+
+This repo contains the code based on Checkout51 code challenger.
+On this repo the folder structure is:
+
+- docker
+  - database (Maria db config)
+  - logs (nginx logs)
+  - nginx (httpd config)
+  - php-fpm (php 7.4 config)
+  - src (Symfony 5 files)
+
+## Code base
+
+To clone the whole project, please follow the following instruction.
 
 ```
-git clone git@gitlab.com:martinpham/symfony-5-docker.git
+git clone git@github.com:seyrls/checkout51.git
 
-cd symfony-5-docker
+cd checkout51
 
 cd docker
 
 docker-compose up
 ```
 
-## Compose
+## Docker Compose
 
-### Database (MariaDB)
+The docker compose will install the following containers:
 
-...
-
-### PHP (PHP-FPM)
-
-Composer is included
-
-```
-docker-compose run php-fpm composer 
-```
-
-To run fixtures
-
-```
-docker-compose run php-fpm bin/console doctrine:fixtures:load
-```
-
-### Webserver (Nginx)
-
-...
+- Maria DB
+- Nginx
+- php 7.4
+- Symfony 5

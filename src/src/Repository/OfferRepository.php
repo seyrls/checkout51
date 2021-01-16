@@ -28,10 +28,6 @@ class OfferRepository extends ServiceEntityRepository
      */
     public function findAll(?string $sort = null, ?string $direction = null): ?array
     {
-        return $this->createQueryBuilder('o')
-                    ->select('o')
-                    ->addOrderBy('o.' . $sort, $direction)
-                    ->getQuery()
-                    ->getResult();
+        return $this->findBy([], [$sort => $direction]);
     }
 }

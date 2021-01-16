@@ -22,17 +22,30 @@ class OfferController extends AbstractController
     {
         $sort = $request->query->get('sort') ?? null;
         $direction = $request->query->get('direction') ?? null;
+        $output = $request->query->get('output') ?? null;
+        $data = $this->manager->getOffers($sort, $direction);
 
-        $this->manager->getOffers($sort, $direction);
+        if ($output === 'json') {
+            return $this->json($data);
+        }
 
         return $this->render('offer/index.html.twig', [
-            'controller_name' => 'OfferController',
+            'data' => $data
         ]);
     }
 
     #[Route('/offer/{offer_id}', name: 'get_offer')]
-    public function getAction(Request $request, int $offer_id)
+    public function getAction(Request $request, int $offer_id): Response
     {
-        $this->manager->getOffer($offer_id);
+        $output = $request->query->get('output') ?? null;
+        $data = $this->manager->getOffer($offer_id);
+
+        if ($output === 'json') {
+            return $this->json($data);
+        }
+
+        return $this->render('offer/index.html.twig', [
+            'data' => [$data]
+        ]);
     }
 }

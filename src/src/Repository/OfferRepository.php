@@ -19,32 +19,19 @@ class OfferRepository extends ServiceEntityRepository
         parent::__construct($registry, Offer::class);
     }
 
-    // /**
-    //  * @return Offer[] Returns an array of Offer objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Overwritten the method findAll to includes sort and direction instead do it in ArrayCollection.
+     *
+     * @param string|null $sort
+     * @param string|null $direction
+     * @return array|null
+     */
+    public function findAll(?string $sort = null, ?string $direction = null): ?array
     {
         return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+                    ->select('o')
+                    ->addOrderBy('o.' . $sort, $direction)
+                    ->getQuery()
+                    ->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Offer
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

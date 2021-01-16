@@ -66,12 +66,12 @@ class Offer
         return $this;
     }
 
-    public function getCashBack(): ?string
+    public function getCashBack(): ?float
     {
         return $this->cash_back;
     }
 
-    public function setCashBack(string $cash_back): self
+    public function setCashBack(float $cash_back): self
     {
         $this->cash_back = $cash_back;
 

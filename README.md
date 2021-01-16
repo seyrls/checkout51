@@ -24,6 +24,8 @@ cd checkout51
 cd docker
 
 docker-compose up
+
+docker-compose run php-fpm composer install
 ```
 
 ## Docker Compose

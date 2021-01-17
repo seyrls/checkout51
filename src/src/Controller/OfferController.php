@@ -40,6 +40,10 @@ class OfferController extends AbstractController
         $output = $request->query->get('output') ?? null;
         $data = $this->manager->getOffer($offer_id);
 
+        if (empty($data)) {
+            throw $this->createNotFoundException('The offer does not exist');
+        }
+
         if ($output === 'json') {
             return $this->json($data);
         }

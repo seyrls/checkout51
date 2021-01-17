@@ -18,8 +18,12 @@ class OfferManager
         return $this->repo->findAll($sort, $direction);
     }
 
-    public function getOffer(int $offer_id): \App\Entity\Offer
+    public function getOffer(int $offer_id): ?\App\Entity\Offer
     {
-        return $this->repo->find($offer_id);
+        try {
+            return $this->repo->find($offer_id);
+        } catch (\Exception $ex) {
+            throw $ex->getMessager();
+        }
     }
 }
